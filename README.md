@@ -5,22 +5,22 @@ These scripts will auto solve your wordle for you! Made by [Sparty182020](https:
 
 **WARNING:** The code was created in Febuary/March of 2022. This code may be patched by then. Please do not disturb me on bugs.
 
-### [Traditional Wordle Cheat](https://github.com/sparty182020/wordle/blob/fb90260a8a7b1b62936b96e5e928c068111c0e41/script/original.js)
+### [Traditional Wordle Cheat](./script/original.js)
 ***Note:*** You require to be on a PC for this to work
 1) Go to the [Original Wordle Game](https://nytimes.com/games/wordle/index.html)
 2) Press **Ctrl+Shift+I**
 3) Go to the tab labeled "_Console_"
-4) Copy the code from [here](https://github.com/sparty182020/wordle/blob/fb90260a8a7b1b62936b96e5e928c068111c0e41/script/original.js) and paste it, then press enter
+4) Copy the code from [here](./script/original.js) and paste it, then press enter
 5) Make sure the code was entered, and that it says "undefined" after it in the console. If not, redo step 4.
 6) Type `Cheat.set(3)` and press enter
 7) Reload and bang your done
 
-### [Unlimited Wordle Cheat](https://github.com/sparty182020/wordle/blob/fb90260a8a7b1b62936b96e5e928c068111c0e41/script/unlimited.js)
+### [Unlimited Wordle Cheat](./script/unlimited.js)
 ***Note:*** You require to be on a PC for this to work
 1) Go to the [Wordle Unlimited Game](https://www.wordleunlimited.com/)
 2) Press **Ctrl+Shift+I**
 3) Go to the tab labeled "_Console_"
-4) Copy the code from [here](https://github.com/sparty182020/wordle/blob/fb90260a8a7b1b62936b96e5e928c068111c0e41/script/unlimted.js) and paste it, then press enter
+4) Copy the code from [here](./script/unlimited.js) and paste it, then press enter
 5) Make sure the code was entered, and that it says "undefined" after it in the console. If not, redo step 4.
 6) Type `const x = new UCheat(true)` if you want it to auto close the "success" message and start the next Wordle or `const x = new UCheat(false)` if not, and press enter
 7) Type `x.solve()` to solve only that problem or type `x.autoSolve()` to solve that and following words
