@@ -35,22 +35,20 @@ class UCheat {
         const x = document.getElementsByClassName("game-id")[0].innerText.replace("Game ID: ", "")
         const solution = atob(x)
         const spSolution = solution.split('')
-        for (let i = 0; i <= solution.length; i++) {
-            if (i == solution.length) {
-                document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }))
-                break
-            }
-            Promise.resolve()
-                .then(
-                    setTimeout(_ => { document.getElementsByClassName("btn-close")[0].click() }, 500)
-                )
-                .then(
-                    setTimeout(_ => { document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' })) }, 1000)
-                )
-                .then(
-                    setTimeout(_ => { this.autoSolve() }, 1000)
-                )
+        for (let i = 0; i < solution.length; i++) {
+            document.dispatchEvent(new KeyboardEvent('keydown', { 'key': spSolution[i] }))
         }
+        document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' }))
+        Promise.resolve()
+            .then(
+                setTimeout(_ => { document.getElementsByClassName("btn-close")[0].click() }, 500)
+            )
+            .then(
+                setTimeout(_ => { document.dispatchEvent(new KeyboardEvent('keydown', { 'key': 'Enter' })) }, 1000)
+            )
+            .then(
+                setTimeout(_ => { this.autoSolve() }, 1000)
+            )
     }
     cSolve() {
         if (location.host !== "www.wordleunlimited.com") { return }
@@ -100,15 +98,27 @@ class UCheat {
                 setTimeout(_ => { UCheat.autoSolve() }, 1000)
             )
     }
-}
-
-const genButton = function () {
-    const buttondiv = document.createElement("div")
-    buttondiv.style.cssText = "left: 5vw; top: 50vh; width: 128px; position: absolute;"
-    const button = document.createElement("button")
-    button.onclick = _ => new UCheat(true).cSolve()
-    button.innerText = "Solve this Wordle"
-    button.style.cssText = "border: 4px solid black; border-radius: 16px; position: relative; background: linear-gradient(45deg, red, blue);"
-    buttondiv.appendChild(button)
-    document.body.appendChild(buttondiv)
+    static genButton(type) {
+        if (type == "single" || type == "singular" || type === 1) {
+            const buttondiv = document.createElement("div")
+            buttondiv.style.cssText = "left: 5vw; top: 50vh; width: 128px; position: absolute;"
+            const button = document.createElement("button")
+            button.onclick = _ => new UCheat(true).cSolve()
+            button.innerText = "Solve this Wordle"
+            button.style.cssText = "border: 4px solid black; border-radius: 16px; position: relative; background: linear-gradient(45deg, red, blue);"
+            buttondiv.appendChild(button)
+            document.body.appendChild(buttondiv)
+        } else if (type == "auto" || type == "all" || type === 2) {
+            const buttondiv = document.createElement("div")
+            buttondiv.style.cssText = "left: 5vw; top: 50vh; width: 192px; position: absolute;"
+            const button = document.createElement("button")
+            button.onclick = _ => UCheat.autoSolve()
+            button.innerText = "Solve this and all following Wordles"
+            button.style.cssText = "border: 4px solid black; border-radius: 16px; position: relative; background: linear-gradient(45deg, red, blue);"
+            buttondiv.appendChild(button)
+            document.body.appendChild(buttondiv)
+        } else {
+            throw new TypeError("\"type\" value isn't valid")
+        }
+    }
 }
