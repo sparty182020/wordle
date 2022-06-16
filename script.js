@@ -1,10 +1,7 @@
 // Classic Cheat Class
 class Cheat {
-    constructor() {
-
-    }
     static gameSolver() {
-        if (!location.host.includes("nytimes")) {return}
+        if (!location.host.includes("nytimes")) return;
         const wordleJSON = JSON.parse(localStorage.getItem('nyt-wordle-state'))
         const wordleSolution = wordleJSON.solution
         const time = Date.now()
@@ -42,13 +39,13 @@ class Cheat {
         return wordleGameState;
     }
     static addGameStreak() {
-        if (!location.host.includes("nytimes")) {return}
+        if (!location.host.includes("nytimes")) return;
         const wordleOldStats = JSON.parse(localStorage.getItem('nyt-wordle-statistics'))
         const wordleStats = {
             "currentStreak": wordleOldStats.currentStreak + 1,
             "maxStreak": wordleOldStats.maxStreak + 1,
             "guesses": {
-                "1": wordleOldStats.guesses[1] + 1,
+                "1": wordleOldStats.guesses["1"] + 1,
                 "2": 0,
                 "3": 0,
                 "4": 0,
@@ -57,14 +54,14 @@ class Cheat {
                 "fail": 0
             },
             "winPercentage": 100,
-            "gamesPlayed": wordleOldStats.guesses[1] + 1,
+            "gamesPlayed": wordleOldStats.guesses["1"]+1,
             "gamesWon": wordleOldStats.gamesWon + 1,
             "averageGuesses": 1
         }
         return wordleStats;
     }
     static newGameStreak() {
-        if (!location.host.includes("nytimes")) {return}
+        if (!location.host.includes("nytimes")) return;
         const wordleStats = {
             "currentStreak": 1,
             "maxStreak": 1,
@@ -85,7 +82,7 @@ class Cheat {
         return wordleStats;
     }
     static setStreak() {
-        if (!location.host.includes("nytimes")) {return}
+        if (!location.host.includes("nytimes")) return;
         const valid = localStorage.getItem('nyt-wordle-statistics')
         if (typeof valid === "object") {
             return this.newGameStreak()
@@ -96,8 +93,8 @@ class Cheat {
         }
     }
     static set(m) {
-        if (!location.host.includes("nytimes")) {return}
-        if (m > 3 || m < 1) {
+        if (!location.host.includes("nytimes")) return;
+        if (m > 3 || m < 1 || isNaN(m)) {
             throw new Error("incorrect m value")
         }
         switch (m) {
